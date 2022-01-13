@@ -8,10 +8,10 @@ const crudController = require("../controllers/crud.controller");
 const House = require("../models/houses");
 const houseCrud = new crudController(House);
 
-router.get("/", checkAuth, HouseController.fetchAllHouses);
-router.get("/mine", checkAuth, HouseController.fetchAllUserHouses);
-router.get("/mine/:selectedHouse", checkAuth, HouseController.fetchAllUserHousesExceptSelected);
-router.get("/:id", checkAuth, HouseController.fetchHouseById);
+router.get("/", HouseController.fetchAllHouses);
+router.get("/mine", HouseController.fetchAllUserHouses);
+router.get("/mine/:selectedHouse", HouseController.fetchAllUserHousesExceptSelected);
+router.get("/:id", HouseController.fetchHouseById);
 router.post("/", checkAuth, HouseController.createHouse);
 router.put("/:id", checkAuth, houseCrud.update);
 router.delete("/:id", checkAuth, houseCrud.delete);
