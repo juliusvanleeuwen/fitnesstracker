@@ -9,7 +9,7 @@ const House = require("../models/houses");
 const houseCrud = new crudController(House);
 
 router.get("/", HouseController.fetchAllHouses);
-router.get("/mine", HouseController.fetchAllUserHouses);
+router.get("/mine", checkAuth, HouseController.fetchAllUserHouses);
 router.get("/mine/:selectedHouse", HouseController.fetchAllUserHousesExceptSelected);
 router.get("/:id", HouseController.fetchHouseById);
 router.post("/", checkAuth, HouseController.createHouse);
