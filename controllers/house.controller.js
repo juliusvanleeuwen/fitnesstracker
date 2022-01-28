@@ -89,6 +89,10 @@ module.exports = class HouseController {
         const house = await House.findOne({ _id: req.params.houseId })
         const user = await User.findOne({ email: req.body.email })
 
+        if (user == null) {
+            res.status(404).json('No user found.')
+        }
+
         if (house.creator == req.userData.userId) {
             House.updateOne({ _id: req.params.houseId }, { $addToSet: { owners: user._id } }).then(result => {
                 res.status(200).json({ house });
