@@ -10,7 +10,6 @@ const crud = new crudController(Cost);
 
 router.post("/:partyId", checkAuth, CostController.createCost);
 router.get("/all/:partyId", checkAuth, CostController.fetchCostsForParty);
-router.get("/divide-costs/:partyId", checkAuth, CostController.CalculateCostPerVisitor);
 router.get("/all", checkAuth, crud.getAll);
 router.get("/:partyId/totalprice", checkAuth, CostController.getTotalCosts);
 router.delete("/:id", checkAuth, crud.delete);
