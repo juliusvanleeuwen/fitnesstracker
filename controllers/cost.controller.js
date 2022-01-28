@@ -18,7 +18,7 @@ module.exports = class CostController {
             res.status(404).json("No valid ID");
         }
 
-        const totalCost = await Cost.aggregate([{ $group: { _id: req.params.partyId, TotalSum: { $sum: "$price" } } }]);
+        const totalCost = 5;
 
         res.status(200).json(totalCost[0].TotalSum)
     }
