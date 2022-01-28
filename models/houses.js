@@ -9,7 +9,8 @@ const houseSchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  user: [{ type: Schema.Types.ObjectId, ref: "users" }],
+  creator: { type: Schema.Types.ObjectId, ref: "users" },
+  owners: [{ type: Schema.Types.ObjectId, ref: "users" }],
 });
 
 module.exports = mongoose.model("houses", houseSchema);

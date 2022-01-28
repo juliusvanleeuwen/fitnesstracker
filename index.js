@@ -29,6 +29,7 @@ app.use("/api/house", require("./routes/house.routes"));
 app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/task", require("./routes/task.routes"));
 app.use("/api/party", require("./routes/party.routes"));
+app.use("/api/cost", require("./routes/cost.routes"));
 
 // start servers
 app.listen(port, () =>
