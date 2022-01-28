@@ -27,7 +27,7 @@ module.exports = class CostController {
         if (!ObjectId.isValid(req.params.partyId)) {
             res.status(404).json("No valid ID");
         }
-        const costs = await Cost.find({ party: req.params.partyId });
+        const costs = await Cost.find({ party: req.params.partyId }).populate("user");
 
         res.status(200).json({ costs });
     }
