@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const TaskSchema = require("./tasks").schema;
 
 const listSchema = mongoose.Schema({
   title: String,
