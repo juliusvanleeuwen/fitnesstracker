@@ -14,6 +14,15 @@ module.exports = class Exerciseontroller {
     }
   }
 
+  static async getForWorkout(req, res) {
+    try {
+      const exercises = await Workout.find().find({ _id: req.params.workoutId }).populate("exercises").select('exercises')
+      res.status(200).json(exercises);
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+
   static async fillSelectOption(req, res) {
     try {
       const exercises = await Exercise.find().find({ user: req.userData.userId || null });

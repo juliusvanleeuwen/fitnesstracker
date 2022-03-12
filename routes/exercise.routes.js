@@ -10,6 +10,7 @@ const exerciseCrud = new crudController(Exercise);
 
 router.get("/", checkAuth, ExerciseController.getAll);
 router.get("/:id", checkAuth, ExerciseController.getById);
+router.get("/workout/:workoutId", checkAuth, ExerciseController.getForWorkout);
 router.post("/:workoutId", checkAuth, ExerciseController.createExercise);
 router.post("/", checkAuth, ExerciseController.createCommon);
 router.post("/:exerciseId/addMuscle/:muscleId", checkAuth, ExerciseController.addMuscle);
