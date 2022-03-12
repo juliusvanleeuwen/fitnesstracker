@@ -1,22 +1,15 @@
-const Muscle = require("../models/muscles");
+const Set = require("../models/sets");
 var ObjectId = require("mongoose").Types.ObjectId;
 
-module.exports = class MuscleController {
+module.exports = class SetController {
   static async getAll(req, res) {
     try {
-      const muscles = await Muscle.find().find({ user: req.userData.userId });
+      const sets = await Set.find().find({ $and: [ { $and: [{user: req.userData.userId },{exercise: req.params.exerciseId}] } ] })
+      .populate({
+        path : 'exercise'
+      });
 
-      res.status(200).json(muscles);
-    } catch (err) {
-      res.status(404).json({ message: err.message });
-    }
-  }
-
-  static async getCommon(req, res) {
-    try {
-      const muscles = await Muscle.find().find({ user: null });
-
-      res.status(200).json(muscles);
+      res.status(200).json(sets);
     } catch (err) {
       res.status(404).json({ message: err.message });
     }
@@ -24,12 +17,12 @@ module.exports = class MuscleController {
 
   static async getById(req, res) {
     if (ObjectId.isValid(req.params.id)) {
-      const house = await House.findOne({ _id: req.params.id }).populate(
-        "owners"
-      );
+      const set = await Set.findOne({ _id: req.params.id }).populate({
+        path : 'exercise'
+      });
 
-      if (House != null) {
-        res.status(201).json(house);
+      if (set != null) {
+        res.status(201).json(set);
       } else {
         res.status(404).send({ message: "Not found" });
       }
@@ -39,17 +32,18 @@ module.exports = class MuscleController {
   }
 
   static async create(req, res) {
-    const muscle = new Muscle(req.body);
-    muscle.user = req.userData.userId;
+    const set = new Set(req.body);
+    set.user = req.userData.userId;
+    set.exercise = req.params.exerciseId;
 
     try {
-      muscle.save().then((createdMuscle) => {
+      set.save().then((createdSet) => {
         res
           .status(201)
-          .json({ message: "Created successfully", result: createdMuscle });
+          .json({ message: "Created successfully", result: createdSet });
       });
     } catch (err) {
-      res.status(400).json({ message: "Something went wrong", object: muscle });
+      res.status(400).json({ message: "Something went wrong", object: set });
     }
   }
 

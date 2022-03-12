@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 bodyParser = require("body-parser");
 var ObjectId = require("mongoose").Types.ObjectId;
 
-module.exports = class ListController {
+module.exports = class AuthController {
   //Register
   static async register(req, res) {
     if (req.body.password == undefined) {

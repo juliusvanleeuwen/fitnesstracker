@@ -8,10 +8,11 @@ const crudController = require("../controllers/crud.controller");
 const Muscle = require("../models/muscles");
 const muscleCrud = new crudController(Muscle);
 
-router.get("/", MuscleController.getAll);
-router.get("/mine", checkAuth, MuscleController.getById);
+router.get("/", checkAuth, MuscleController.getAll);
+router.get("/common", checkAuth, MuscleController.getCommon);
 router.get("/:id", MuscleController.getAll);
 router.post("/", checkAuth, MuscleController.create);
+router.post("/common", checkAuth, MuscleController.createCommon);
 router.put("/:id", checkAuth, muscleCrud.update);
 router.delete("/:id", checkAuth, muscleCrud.delete);
 

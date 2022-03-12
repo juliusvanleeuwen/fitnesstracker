@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const workoutSchema = mongoose.Schema({
   name: String,
-  date: {
-    type: Date,
-    default: Date.now(),
-  },
   user: { type: Schema.Types.ObjectId, ref: "users" },
   duration: Number,
   exercises: [{ type: Schema.Types.ObjectId, ref: "exercises" }],
+  muscles: [{ type: Schema.Types.ObjectId, ref: "muscles" }],
+  date: {
+    type: Date,
+  },
 });
 
 module.exports = mongoose.model("workouts", workoutSchema);

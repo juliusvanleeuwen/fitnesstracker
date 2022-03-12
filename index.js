@@ -22,6 +22,7 @@ mongoose
 // routes prefix
 app.use("/api/workout", require("./routes/workout.routes"));
 app.use("/api/exercise", require("./routes/exercise.routes"));
+app.use("/api/set", require("./routes/set.routes"));
 app.use("/api/muscle", require("./routes/muscle.routes"));
 app.use("/api/auth", require("./routes/auth.routes"));
 
