@@ -20,9 +20,9 @@ mongoose
   .catch((err) => console.log(err));
 
 // routes prefix
-app.use("/api/list", require("./routes/list.routes"));
-app.use("/api/meal", require("./routes/meal.routes"));
-app.use("/api/ingredient", require("./routes/ingredient.routes"));
+app.use("/api/workout", require("./routes/workout.routes"));
+app.use("/api/exercise", require("./routes/exercise.routes"));
+app.use("/api/muscle", require("./routes/muscle.routes"));
 app.use("/api/auth", require("./routes/auth.routes"));
 
 // start servers

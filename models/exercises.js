@@ -3,15 +3,11 @@ const Schema = mongoose.Schema;
 
 const exerciseSchema = mongoose.Schema({
   name: String,
-  street: String,
-  housenumber: Number,
-  created: {
-    type: Date,
-    default: Date.now(),
-  },
+  weight: Number,
+  reps: Number,
   muscleGroup: {
     type: Schema.Types.ObjectId,
-    ref: "muscleGroups",
+    ref: "muscles",
     default: null,
   },
   creator: {
@@ -20,6 +16,10 @@ const exerciseSchema = mongoose.Schema({
     default: null,
   },
   workouts: [{ type: Schema.Types.ObjectId, ref: "workouts" }],
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 module.exports = mongoose.model("exercises", exerciseSchema);
